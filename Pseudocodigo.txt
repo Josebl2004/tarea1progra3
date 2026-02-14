@@ -1,0 +1,85 @@
+TAREA - ESTRUCTURA DE DATOS 
+
+EJERCICIO: SEGUNDO NUMERO MAYOR Y SEGUNDO NUMERO MENOR
+
+NOMBRE: Mario Jose Barrera Linarez
+Carnet: 0905-23-13800
+
+1. PSEUDOCODIGO
+
+VARIABLES:
+arreglo: lista de numeros enteros
+n: tamano del arreglo
+mayor: elnumero mas grande encontrado
+segundomayor: el segundo numero mas grande encontrado
+menor: el numero mas peque;o encontrado
+segundomenor: el segundo numero mas peque;o encontrado
+
+INICIO
+//hay que validar que el arreglo tengo al menos 2 numeros o elementos
+Si n < 2 ENTONCES
+	IMPRIMIR "Error: el arreglo debe tener minimo 2 numeros"
+	TERMINAR
+FIN SI
+
+//inicializar variables con los primeros dos elementos
+mayor = MAXIMO(arreglo[0], arreglo[1])
+segundoMayor = MINIMO(arreglo[0], arreglo[1])
+menor = MÍNIMO(arreglo[0], arreglo[1])
+segundoMenor = MÁXIMO(arreglo[0], arreglo[1])
+    
+// recorrer el arreglo desde la posición 2 hasta el final
+PARA i DESDE 2 HASTA n-1 HACER
+        
+//obtener el número actual
+numeroActual = arreglo[i]
+        
+//actualizar los números MAYORES
+        SI numeroActual > mayor ENTONCES
+//encontramos un nuevo número más grande
+            segundoMayor = mayor  // El antiguo mayor pasa a ser segundo
+            mayor = numeroActual   // El nuevo número es el mayor
+        SINO SI numeroActual > segundoMayor ENTONCES
+// Caso: encontramos un número entre mayor y segundoMayor
+            segundoMayor = numeroActual
+FIN SI
+        
+//Actualizar los números MENORES
+        SI numeroActual < menor ENTONCES
+// Caso: encontramos un nuevo número más pequeño
+            segundoMenor = menor   // El antiguo menor pasa a ser segundo
+            menor = numeroActual    // El nuevo número es el menor
+        SINO SI numeroActual < segundoMenor ENTONCES
+// Caso: encontramos un número entre menor y segundoMenor
+            segundoMenor = numeroActual
+FIN SI
+        
+FIN PARA
+    
+//Mostrar resultados
+    IMPRIMIR "El segundo número mayor es: " + segundoMayor
+    IMPRIMIR "El segundo número menor es: " + segundoMenor
+    
+FIN ALGORITMO
+
+=================================
+==POR QUE FUNCIONA EL ALGORITMO==
+=================================
+
+El algoritmo funciona porque se mantiene un seguimiento en tiempo real de los dos numeros mas grandes y mas pequenos mientras el arreglo se recorre una unica vez.
+
+Esto es lo que se hace para los numeros grandes: mayor, siempre guarda el numeor mas grande visto hasta el momento. Segundomayor guarda el segundo numero mas grande visto hasta el momento del recorrido unico del arreglo, lo mismo pasa con menor y segundoMenor.
+Cuando un numero aparece entre mayor y segundoMAyor o menor y segundoMenor se actualiza segundoMayor/segundoMenor.
+
+Al final del recorrido, las variables contienen exactamente los valores buscados sin necesidad de ordenar el arreglo y con una sola pasada.
+
+===========================
+==ANALISIS DE COMPLEJIDAD==
+===========================
+
+---COMPLEJIDAD DE TIEMPO---
+El algoritmo recorre el arreglo una unica vez, si el arreglo tiene n elementos, se hacen n interacciones, en cada interaccion se realiza un maximo de 4 comparaciones, por lo tanto Tiempo = constante * n
+
+---COMPLEJIDAD DE ESPACIO---
+Se utilizan 4 variables sin importar el tamano del arreglo las cuales son, menor, segundoMenor, mayor, segundoMayor. Tambien se utiliza una variable para el indice (i), el espacio no crece con el tamano de la entrada por lo tanto: Espacio = 0(1).
+
